@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arpita, you make my world bloom 🌻</title>
+    <!-- Elegant fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 30% 30%, #fff1d6, #fdd9b5, #fecb9e);
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            perspective: 1200px;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        /* soft floating particles (hearts & sunflowers) */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            transform-style: preserve-3d;
+        }
+
+        .float-item {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            filter: drop-shadow(0 0 5px #ffb08a);
+            animation: elegantFloat 20s infinite alternate ease-in-out;
+            color: #e6735c;
+            white-space: nowrap;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+        }
+
+        .float-item.heart {
+            color: #ff8a9f;
+            font-size: 2.5rem;
+        }
+
+        @keyframes elegantFloat {
+            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.2; }
+            50% { transform: translateY(-40px) rotate(8deg) translateX(15px); opacity: 0.5; }
+            100% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.2; }
+        }
+
+        /* main scene */
+        .scene {
+            position: relative;
+            z-index: 20;
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-style: preserve-3d;
+            padding: 2rem 1rem;
+        }
+
+        /* TOP NAME - very visible */
+        .top-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            font-weight: 400;
+            color: #b34e1a;
+            text-shadow: 0 0 20px #ffe5b4, 2px 2px 0 #ffd58c, 4px 4px 0 rgba(255, 180, 70, 0.5);
+            background: rgba(255, 250, 240, 0.4);
+            backdrop-filter: blur(6px);
+            padding: 0.3rem 2.5rem;
+            border-radius: 80px;
+            border: 2px solid #ffc489;
+            box-shadow: 0 10px 30px #fca86b;
+            margin-bottom: 1.5rem;
+            transform: rotateX(2deg) rotateY(1deg) translateZ(20px);
+            letter-spacing: 4px;
+            animation: softGlow 3s infinite alternate;
+            white-space: nowrap;
+        }
+
+        @keyframes softGlow {
+            0% { text-shadow: 0 0 20px #ffe5b4, 2px 2px 0 #ffd58c, 4px 4px 0 rgba(255, 180, 70, 0.5); }
+            100% { text-shadow: 0 0 40px #ffdd96, 2px 2px 0 #ffc061, 6px 6px 0 rgba(200, 120, 20, 0.5); }
+        }
+
+        /* 3D ring of Arpita names */
+        .ring-container {
+            position: relative;
+            width: 340px;
+            height: 340px;
+            transform-style: preserve-3d;
+            animation: rotateRing 24s infinite linear;
+            margin: 1rem 0 2rem;
+            filter: drop-shadow(0 0 25px #faba7a);
+        }
+
+        @keyframes rotateRing {
+            0% { transform: rotateX(8deg) rotateY(0deg); }
+            100% { transform: rotateX(8deg) rotateY(360deg); }
+        }
+
+        .ring-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 130px;
+            margin-left: -65px;
+            height: 60px;
+            margin-top: -30px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            font-weight: normal;
+            color: #b04513;
+            text-shadow: 0 0 12px #ffdca8, 2px 2px 0 #ffe0a3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 235, 200, 0.25);
+            backdrop-filter: blur(3px);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 200, 120, 0.6);
+            transform-style: preserve-3d;
+            transform: rotateY(calc(36deg * var(--i))) translateZ(200px) rotateY(calc(-36deg * var(--i)));
+            white-space: nowrap;
+            padding: 0 0.8rem;
+            box-shadow: 0 5px 20px rgba(255, 150, 50, 0.2);
+            letter-spacing: 2px;
+        }
+
+        /* central cube */
+        .cube-container {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -100px;
+            transform-style: preserve-3d;
+            animation: spinCube 20s infinite linear;
+            filter: drop-shadow(0 0 35px #fcc47a);
+        }
+
+        @keyframes spinCube {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 225, 160, 0.75);
+            border: 3px solid #ffbb70;
+            box-shadow: 0 0 40px #ffe1a8 inset, 0 0 30px #ffb56b;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 3.2rem;
+            backface-visibility: visible;
+            transform-style: preserve-3d;
+            backdrop-filter: blur(2px);
+        }
+
+        .face span { font-size: 3.8rem; filter: drop-shadow(0 0 5px #b64500); }
+        .face .letter {
+            font-size: 2.8rem;
+            font-weight: 500;
+            color: #9e4d0e;
+            text-shadow: 0 2px 8px #ffbc7a;
+            background: #fff6e0;
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            margin-top: 0.3rem;
+            font-family: 'Great Vibes', cursive;
+            border: 1px solid #f9b953;
+        }
+
+        .front  { transform: translateZ(100px); }
+        .back   { transform: rotateY(180deg) translateZ(100px); }
+        .right  { transform: rotateY(90deg) translateZ(100px); }
+        .left   { transform: rotateY(-90deg) translateZ(100px); }
+        .top    { transform: rotateX(90deg) translateZ(100px); }
+        .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+        /* Romantic message card */
+        .love-card {
+            background: rgba(255, 245, 225, 0.7);
+            backdrop-filter: blur(12px);
+            padding: 2rem 2.5rem;
+            border-radius: 80px 80px 80px 20px;
+            border: 2px solid #ffdbb5;
+            box-shadow: 0 30px 40px #fcaa5e80, 0 0 0 2px #fff5e6 inset;
+            max-width: 600px;
+            text-align: center;
+            transform: rotateX(3deg) rotateY(-2deg) translateZ(20px);
+            margin: 2.5rem 1rem 1.5rem;
+        }
+
+        .love-card p {
+            font-size: 1.6rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #5c3712;
+            line-height: 1.6;
+        }
+
+        .love-card .poem {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 300;
+            color: #7b4d2b;
+            border-top: 2px dashed #fbc98b;
+            padding-top: 1.2rem;
+        }
+
+        .love-card .signature-line {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #ad581e;
+            margin-top: 1rem;
+        }
+
+        /* Elegant button */
+        .magic-button {
+            background: transparent;
+            border: 2px solid #ffb485;
+            color: #894d1e;
+            font-size: 1.5rem;
+            font-weight: 500;
+            padding: 1rem 3rem;
+            border-radius: 60px;
+            backdrop-filter: blur(8px);
+            background: rgba(255, 240, 210, 0.4);
+            cursor: pointer;
+            box-shadow: 0 8px 20px #fda75e, 0 0 0 1px #ffdbb5 inset;
+            transition: all 0.3s ease;
+            font-family: 'Quicksand', sans-serif;
+            letter-spacing: 2px;
+            margin: 1rem 0 3rem;
+            transform: rotateX(2deg) rotateY(1deg) translateZ(15px);
+        }
+
+        .magic-button:hover {
+            background: #ffdeb0;
+            box-shadow: 0 15px 30px #fd9f4a, 0 0 0 2px #ffeac1 inset;
+            transform: rotateX(2deg) rotateY(1deg) translateZ(20px) scale(1.02);
+            color: #632e00;
+        }
+
+        /* container for burst effects */
+        .burst-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .burst-item {
+            position: absolute;
+            font-size: 2rem;
+            animation: burstFly 4s forwards ease-out;
+            color: #ff7b6b;
+            filter: drop-shadow(0 0 8px #ffa55c);
+        }
+
+        @keyframes burstFly {
+            0% { transform: translateY(0) scale(0.8); opacity: 1; }
+            100% { transform: translateY(-300px) scale(1.5); opacity: 0; }
+        }
+
+        /* responsive */
+        @media (max-width: 600px) {
+            .top-name { font-size: 3.2rem; padding: 0.2rem 1.5rem; }
+            .love-card p { font-size: 1.2rem; }
+            .love-card .poem { font-size: 1rem; }
+            .magic-button { font-size: 1.2rem; padding: 0.8rem 2rem; }
+            .ring-container { width: 260px; height: 260px; }
+            .ring-item { width: 90px; margin-left: -45px; font-size: 1.4rem; }
+            .cube-container { width: 150px; height: 150px; margin-top: -75px; margin-left: -75px; }
+            .face { width: 150px; height: 150px; font-size: 2.5rem; }
+            .face .letter { font-size: 2rem; }
+            .front { transform: translateZ(75px); }
+            .back { transform: rotateY(180deg) translateZ(75px); }
+            .right { transform: rotateY(90deg) translateZ(75px); }
+            .left { transform: rotateY(-90deg) translateZ(75px); }
+            .top { transform: rotateX(90deg) translateZ(75px); }
+            .bottom { transform: rotateX(-90deg) translateZ(75px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- background floating elegance -->
+    <div class="floating-elements">
+        <div class="float-item heart" style="top: 5%; left: 2%;">❤️</div>
+        <div class="float-item" style="top: 12%; right: 5%;">Arpita</div>
+        <div class="float-item heart" style="bottom: 15%; left: 10%;">❤️</div>
+        <div class="float-item" style="bottom: 25%; right: 8%;">Arpita</div>
+        <div class="float-item" style="top: 40%; left: 20%;">🌻</div>
+        <div class="float-item heart" style="top: 70%; right: 15%;">❤️</div>
+        <div class="float-item" style="bottom: 5%; left: 25%;">Arpita</div>
+        <div class="float-item heart" style="top: 80%; left: 5%;">❤️</div>
+        <div class="float-item" style="top: 30%; right: 25%;">🌻</div>
+    </div>
+
+    <!-- burst container (for button effect) -->
+    <div class="burst-container" id="burstContainer"></div>
+
+    <!-- main 3D scene -->
+    <div class="scene">
+        <!-- TOP NAME - very visible, elegant, and clear -->
+        <div class="top-name">Arpita</div>
+
+        <!-- ring + cube -->
+        <div style="position: relative; width: 360px; height: 360px; transform-style: preserve-3d;">
+            <div class="ring-container">
+                <div class="ring-item" style="--i:0;">Arpita</div>
+                <div class="ring-item" style="--i:1;">Arpita</div>
+                <div class="ring-item" style="--i:2;">Arpita</div>
+                <div class="ring-item" style="--i:3;">Arpita</div>
+                <div class="ring-item" style="--i:4;">Arpita</div>
+                <div class="ring-item" style="--i:5;">Arpita</div>
+                <div class="ring-item" style="--i:6;">Arpita</div>
+                <div class="ring-item" style="--i:7;">Arpita</div>
+                <div class="ring-item" style="--i:8;">Arpita</div>
+                <div class="ring-item" style="--i:9;">Arpita</div>
+            </div>
+            <div class="cube-container">
+                <div class="face front"><span>🌻</span><div class="letter">A</div></div>
+                <div class="face back"><span>🌻</span><div class="letter">R</div></div>
+                <div class="face right"><span>🌻</span><div class="letter">P</div></div>
+                <div class="face left"><span>🌻</span><div class="letter">I</div></div>
+                <div class="face top"><span>🌻</span><div class="letter">T</div></div>
+                <div class="face bottom"><span>🌻</span><div class="letter">A</div></div>
+            </div>
+        </div>
+
+        <!-- romantic card -->
+        <div class="love-card">
+            <p>"You are the sunflower I would turn to, even on a cloudy day."</p>
+            <div class="poem">
+                In a field of gold, you stand apart, <br>
+                with a gentle grace that holds my heart. <br>
+                Every smile of yours, a ray of light, <br>
+                Arpita, you make everything right.
+            </div>
+            <div class="signature-line">🌻 forever yours 🌻</div>
+        </div>
+
+        <!-- magic button (click to add beautiful effects) -->
+        <button class="magic-button" id="magicBtn">✨ make her smile ✨</button>
+    </div>
+
+    <script>
+        (function() {
+            const btn = document.getElementById('magicBtn');
+            const burstContainer = document.getElementById('burstContainer');
+
+            function createBurst() {
+                const count = 45; // more particles for richer effect
+                for (let i = 0; i < count; i++) {
+                    const item = document.createElement('div');
+                    item.className = 'burst-item';
+                    const r = Math.random();
+                    let content = '';
+                    if (r < 0.4) content = '❤️';
+                    else if (r < 0.7) content = '🌻';
+                    else content = 'Arpita';
+
+                    item.textContent = content;
+
+                    const x = Math.random() * 100;
+                    const y = Math.random() * 70 + 20;
+                    item.style.left = x + '%';
+                    item.style.top = y + '%';
+
+                    const size = 1.5 + Math.random() * 2.5;
+                    item.style.fontSize = size + 'rem';
+
+                    const duration = 3 + Math.random() * 4;
+                    const delay = Math.random() * 0.8;
+                    item.style.animation = `burstFly ${duration}s ${delay}s forwards ease-out`;
+
+                    item.style.transform = `rotate(${Math.random() * 40 - 20}deg)`;
+
+                    burstContainer.appendChild(item);
+
+                    setTimeout(() => {
+                        if (item.parentNode) item.remove();
+                    }, (duration + delay) * 1000);
+                }
+            }
+
+            btn.addEventListener('click', () => {
+                createBurst();
+
+                // fun little animation on ring and top name
+                const ring = document.querySelector('.ring-container');
+                ring.style.animation = 'none';
+                ring.offsetHeight;
+                ring.style.animation = 'rotateRing 24s infinite linear';
+
+                const topName = document.querySelector('.top-name');
+                topName.style.transform = 'rotateX(2deg) rotateY(1deg) translateZ(20px) scale(1.05)';
+                setTimeout(() => {
+                    topName.style.transform = 'rotateX(2deg) rotateY(1deg) translateZ(20px)';
+                }, 200);
+
+                btn.textContent = '🌸 she smiled! 🌸';
+                setTimeout(() => {
+                    btn.textContent = '✨ make her smile ✨';
+                }, 1500);
+            });
+        })();
+    </script>
+</body>
+</html>
